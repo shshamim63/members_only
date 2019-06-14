@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
+
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :current_user, only: :index
-  before_action :logged_in?, only: :index
+
   def index
     @posts = Post.all
+    @user = current_user
   end
 
   def new
@@ -15,9 +16,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to @post
+      redirect_to :root
       flash.now[:success] = 'Post was successfully created.'
     else
       render 'new'
