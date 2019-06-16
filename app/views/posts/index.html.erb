@@ -1,22 +1,25 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Posts</h1>
+<div class="container">
 
-<table>
+
+  <table>
   <tbody>
     <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.body %></td>
+      <div>
+        <h4><%= post.title %></h4>
         <% if logged_in? %>
-          <td><%= User.find_by(id: post.user_id).name %></td>
+          <h3>Author:  <%= User.find_by(id: post.user_id).name %></h3>
         <% end %>
-      </tr>
+        <p><%= post.body %></p>
+      </div>
     <% end %>
   </tbody>
-</table>
+  </table>
 
-<br>
-<% if logged_in? %>
-  <%= link_to 'New Post', new_post_path, class: "btn btn-lg btn-primary" %>
-<% end %>
+  <br>
+  <% if logged_in? %>
+    <%= link_to 'New Post', new_post_path, class: "btn btn-lg btn-primary button-float-right" %>
+  <% end %>
+</div>
