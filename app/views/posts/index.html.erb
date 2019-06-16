@@ -8,10 +8,10 @@
   <tbody>
     <% @posts.each do |post| %>
       <div>
-        <h4><%= post.title %></h4>
         <% if logged_in? %>
           <h3>Author:  <%= User.find_by(id: post.user_id).name %></h3>
         <% end %>
+        <h4><%= post.title %></h4>
         <p><%= post.body %></p>
       </div>
     <% end %>
