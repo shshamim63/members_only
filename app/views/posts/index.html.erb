@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+<div class="container">
+
+
+  <table>
+  <tbody>
+    <% @posts.each do |post| %>
+      <div>
+        <% if logged_in? %>
+          <h3>Author:  <%= User.find_by(id: post.user_id).name %></h3>
+        <% end %>
+        <h4><%= post.title %></h4>
+        <p><%= post.body %></p>
+      </div>
+    <% end %>
+  </tbody>
+  </table>
+
+  <br>
+  <% if logged_in? %>
+    <%= link_to 'New Post', new_post_path, class: "btn btn-lg btn-primary button-float-right" %>
+  <% end %>
+</div>
