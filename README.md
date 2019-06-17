@@ -9,8 +9,8 @@ An exclusive clubhouse where your members can write embarrassing posts about non
 
 ## Contributors
 
-* Shakhawat Hossain - [Github Profile](https://github.com/shshamim63)
-* Trillanjan Jose - [Github Profile](https://github.com/trillianjose)
+* [Shakhawat Hossain](https://github.com/shshamim63)
+* [Trillanjan Jose](https://github.com/trillianjose)
 
 ## Instructions
 
