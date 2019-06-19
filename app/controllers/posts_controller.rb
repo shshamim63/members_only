@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:edit, :update, :destroy]
+  before_action :require_login, except: [:index]
 
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:new, :create, :update, :destroy, :edit]
   def index
     @posts = Post.all
     @user = current_user
@@ -11,18 +11,19 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def show
-
-  end
-
   def create
     @post = current_user.posts.build(post_params)
+
     if @post.save
       redirect_to :root
       flash.now[:success] = 'Post was successfully created.'
     else
       render 'new'
     end
+  end
+
+  def edit
+    @post = Post.find(params[:id])
   end
 
   def update
@@ -52,7 +53,7 @@ class PostsController < ApplicationController
 
   def require_login
     unless logged_in?
-      flash[:error] = "You must be logged in to access this section"
+      flash[:error] = 'You must be logged in to access this section'
       redirect_to :login
     end
   end

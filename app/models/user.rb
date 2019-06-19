@@ -1,8 +1,7 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token, :activation_token, :reset_token
-  before_save   :downcase_email
-
   REGEX =  /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}\z/i
+
+  attr_accessor :remember_token, :activation_token, :reset_token
 
   has_many :posts, dependent: :destroy
 
@@ -12,6 +11,8 @@ class User < ApplicationRecord
 
   has_secure_password
   validates :password, presence: true, length: {minimum: 6}
+
+  before_save   :downcase_email
 
   def self.digest(string)
      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -24,7 +25,7 @@ class User < ApplicationRecord
   end
 
   def remember
-    self.remember_token = User.new_token
+    remember_token = User.new_token
     update_attribute(:remember_digest, User.digest(remember_token))
   end
 
@@ -41,6 +42,6 @@ class User < ApplicationRecord
 
   # Converts email to all lower-case.
   def downcase_email
-    self.email = email.downcase
+    email = email.downcase
   end
 end
