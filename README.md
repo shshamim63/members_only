@@ -1,4 +1,4 @@
-# README
+# Members Only
 
 An exclusive clubhouse where your members can write embarrassing posts about non-members. Authorized members can see posts with the authors name. But unauthorized viewers can only see the story and wonder who wrote it.
 
